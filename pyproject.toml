@@ -9,8 +9,6 @@ description = "AgentClass"
 readme = "README.md"
 requires-python = ">=3.9"
 
-
-# include https://github.com/bitovi/dependabot-py-test-dep
 dependencies = [  # Required dependencies go here, like requirements.txt
   "agentmodel@git+https://github.com/bitovi/dependabot-py-test-dep
 ]
