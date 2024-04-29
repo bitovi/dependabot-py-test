@@ -10,5 +10,5 @@ readme = "README.md"
 requires-python = ">=3.9"
 
 dependencies = [
-  "agentmodel@git+https://github.com/bitovi/dependabot-py-test-dep
+  "agentmodel@git+https://github.com/bitovi/dependabot-py-test-dep.git@main#egg=agentmodel",
 ]
