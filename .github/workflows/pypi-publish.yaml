@@ -19,7 +19,8 @@ jobs:
             - name: publish-pypi
               uses: ./.github/actions/publish-pypi
               with:
-                github-token: ${{ github.token }}
+                # github-token: ${{ github.token }}
+                github-token: ${{ secrets.PYPI_GITHUB_TOKEN }}
 
                 # TODO: this is only required if referencing a local action
                 checkout: false
