@@ -1,2 +1,2 @@
-# Exchange Data Model
-This repo has the data model we use for storing Documents and their metadata on Exchange
+# Dependabot Python Test
+This is the parent.  The dep repo is https://github.com/bitovi/dependabot-py-test-dep.
