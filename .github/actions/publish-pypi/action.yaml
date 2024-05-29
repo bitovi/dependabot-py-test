@@ -82,8 +82,8 @@ runs:
         output_object="{}"
         if [ -f $toml_file ]; then
             echo "Found $toml_file"
-            version=$(toml get $toml_file project.version)
-            name=$(toml get $toml_file project.name)
+            version=$(toml get $toml_file project.version --raw)
+            name=$(toml get $toml_file project.name --raw)
             archive_url="${GITHUB_REPOSITORY_URL}/archive/refs/tags/${GITHUB_REF}.tar.gz"
             output_object="{\"name\": \"$name\", \"version\": \"$version\", \"archive_url\": \"$archive_url\"}"
         else
