@@ -74,6 +74,8 @@ runs:
       shell: bash
       env:
         TOML_FILE: ${{ inputs.toml-file }}
+        GITHUB_REF: ${{ github.ref }}
+        GITHUB_REPOSITORY_URL: ${{ github.repositoryUrl }}
       run: |
         echo "::group::Extract toml data"
         toml_file="${TOML_FILE}"
@@ -82,7 +84,7 @@ runs:
             echo "Found $toml_file"
             version=$(tomlq -r .tool.poetry.version $toml_file)
             name=$(tomlq -r .tool.poetry.name $toml_file)
-            archive_url="{{ github.repositoryUrl }}/archive/refs/tags/{{ github.ref }}.tar.gz"
+            archive_url="${GITHUB_REPOSITORY_URL}/archive/refs/tags/${GITHUB_REF}.tar.gz"
             output_object="{\"name\": \"$name\", \"version\": \"$version\", \"archive_url\": \"$archive_url\"}"
         else
             echo "No $toml_file found"
@@ -108,10 +110,15 @@ runs:
         echo "output_object=${output_object}"
 
         # use the gh cli to trigger the workflow
-        gh workflow run $PYPI_GITHUB_WORKFLOW_FILENAME \
-        -R $PYPI_GITHUB_ORG/$PYPI_GITHUB_REPO \
-        --json $output_object \
-        --ref $PYPI_GITHUB_WORKFLOW_REF
+        wfn=$PYPI_GITHUB_WORKFLOW_FILENAME
+        ref=$PYPI_GITHUB_WORKFLOW_REF
+        orgrepo=$PYPI_GITHUB_ORG/$PYPI_GITHUB_REPO
+        echo "wfn=$wfn"
+        echo "ref=$ref"
+        echo "orgrepo=$orgrepo"
+        
+        echo "gh workflow run $wfn -R $orgrepo --ref $ref --json $output_object"
+        gh workflow run $wfn -R $orgrepo --ref $ref --json $output_object
 
     # - name: Trigger PyPI Publish
 
