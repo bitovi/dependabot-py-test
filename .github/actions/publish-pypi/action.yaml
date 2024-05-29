@@ -117,8 +117,8 @@ runs:
         echo "ref=$ref"
         echo "orgrepo=$orgrepo"
         
-        echo "gh workflow run $wfn -R $orgrepo --ref $ref --json $output_object"
-        gh workflow run $wfn -R $orgrepo --ref $ref --json $output_object
+        echo "echo $output_object | gh workflow run $wfn -R $orgrepo --ref $ref --json"
+        echo "$output_object" | gh workflow run $wfn -R $orgrepo --ref $ref --json
 
     # - name: Trigger PyPI Publish
 
