@@ -10,9 +10,9 @@ inputs:
     description: 'GitHub hosted PyPI repo'
     required: true
 
-  # github-token:
-  #   description: 'GitHub token'
-  #   required: true
+  github-token:
+    description: 'GitHub token to use for triggering the publish workflow in the PyPI repo'
+    required: true
 
   pypi-github-user:
     description: 'GitHub user to publish the package'
