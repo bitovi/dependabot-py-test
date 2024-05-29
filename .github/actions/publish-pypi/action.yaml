@@ -64,6 +64,11 @@ runs:
       with:
           python-version: ${{ inputs.python-version }}
 
+    - name: Install tomlq
+      shell: bash
+      run: |
+        python -m pip install tomlq
+
     - name: extract toml data
       id: extract_toml_data
       shell: bash
