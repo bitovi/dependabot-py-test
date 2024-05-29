@@ -64,10 +64,10 @@ runs:
       with:
           python-version: ${{ inputs.python-version }}
 
-    - name: Install tomlq
+    - name: Install toml with cargo
       shell: bash
       run: |
-        python -m pip install tomlq
+        cargo install toml-cli
 
     - name: extract toml data
       id: extract_toml_data
@@ -82,8 +82,8 @@ runs:
         output_object="{}"
         if [ -f $toml_file ]; then
             echo "Found $toml_file"
-            version=$(tomlq project.version -f $toml_file)
-            name=$(tomlq project.name -f $toml_file)
+            version=$(toml get $toml_file project.version)
+            name=$(toml get $toml_file project.name)
             archive_url="${GITHUB_REPOSITORY_URL}/archive/refs/tags/${GITHUB_REF}.tar.gz"
             output_object="{\"name\": \"$name\", \"version\": \"$version\", \"archive_url\": \"$archive_url\"}"
         else
