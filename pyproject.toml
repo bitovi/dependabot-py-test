@@ -4,8 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agentclass"
-version = "0.0.7"
+version = "0.0.8"
 description = "AgentClass"
 readme = "README.md"
 requires-python = ">=3.9"
+dependencies = [
+  "agentmodel==0.0.2",
+]
 
