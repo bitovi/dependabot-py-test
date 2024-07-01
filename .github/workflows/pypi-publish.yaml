@@ -15,7 +15,8 @@ jobs:
           github-token: ${{ secrets.BITOVI_PYPI_GITHUB_TOKEN_FINEGRAINED }}
           pypi-github-org: bitovi
           pypi-github-repo: PyPI
-          pypi-github-workflow-filename: publish-trigger.yaml
+          pypi-github-workflow-ref: initial-working
+          pypi-github-workflow-filename: handle-publish.yaml
 
 
           # skip sha for now to avoid ssh setup
