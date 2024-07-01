@@ -15,4 +15,4 @@ jobs:
                 github-token: ${{ secrets.BITOVI_PYPI_GITHUB_TOKEN_FINEGRAINED }}
                 pypi-github-org: bitovi
                 pypi-github-repo: PyPI
-                pypi-github-workflow-filename: handle-publish.yaml
+                pypi-github-workflow-filename: publish-trigger.yaml
