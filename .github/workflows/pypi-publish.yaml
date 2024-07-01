@@ -6,13 +6,22 @@ on:
       - 'v*.*.*'
 
 jobs:
-    publish:
-        runs-on: ubuntu-latest
-        steps:
-            - name: publish-pypi
-              uses: bitovi/github-actions-publish-github-pypi@main
-              with:
-                github-token: ${{ secrets.BITOVI_PYPI_GITHUB_TOKEN_FINEGRAINED }}
-                pypi-github-org: bitovi
-                pypi-github-repo: PyPI
-                pypi-github-workflow-filename: publish-trigger.yaml
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: publish-pypi
+        uses: bitovi/github-actions-publish-github-pypi@main
+        with:
+          github-token: ${{ secrets.BITOVI_PYPI_GITHUB_TOKEN_FINEGRAINED }}
+          pypi-github-org: bitovi
+          pypi-github-repo: PyPI
+          pypi-github-workflow-filename: publish-trigger.yaml
+
+
+          # skip sha for now to avoid ssh setup
+          # sha calculation requires `git clone`
+          archive-skip-sha: true
+            
+          # this is necessary when using PyPI in private GitHub repos
+          # because basic auth is not supported by github's private pages)
+          archive-url: git+ssh://git@github.com/${{ github.repository }}.git@${{ github.ref_name }}#egg={packag_name}-{toml_version}
