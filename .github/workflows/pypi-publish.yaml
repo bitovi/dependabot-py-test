@@ -5,8 +5,6 @@ on:
     tags:
       - 'v*.*.*'
 
-permissions: write-all
-
 jobs:
     publish:
         runs-on: ubuntu-latest
@@ -14,7 +12,7 @@ jobs:
             - name: publish-pypi
               uses: bitovi/github-actions-publish-github-pypi@main
               with:
-                github-token: ${{ secrets.PYPI_GITHUB_TOKEN }}
+                github-token: ${{ secrets.BITOVI_PYPI_GITHUB_TOKEN_FINEGRAINED }}
                 pypi-github-org: bitovi
                 pypi-github-repo: PyPI
-                pypi-github-workflow-ref: initial-working
+                pypi-github-workflow-filename: handle-publish.yaml
